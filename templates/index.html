@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAILY FEED</title>
+    <style>
+        @font-face {
+            font-family: 'Head1';
+            src: url('{{ url_for("static", filename="fonts/engr.ttf") }}') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Datefont';
+            src: url('{{ url_for("static", filename="fonts/BRADHITC.TTF") }}') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Greetfont';
+            src: url('{{ url_for("static", filename="fonts/monotypecor.ttf") }}') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Affont';
+            src: url('{{ url_for("static", filename="fonts/PERTILI.TTF") }}') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Quote';
+            src: url('{{ url_for("static", filename="fonts/Segoe.ttf") }}') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+          p {
+        font-size: 30px;
+        }
+
+        h2 {
+            font-size: 50px;
+        }
+
+        h1 {
+            font-size: 70px;
+            font-family: 'HEAD1';
+            color: #102C57;
+        }
+        h3 {
+            font-size: 40px;
+        }
+        body {
+            font-family:'Times New Roman', Times, serif;
+            background-color: #F8FAE5;
+            color: #030637;  /* Black color */
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;  /* Darker script color */
+        }
+
+        h2 {
+            text-align: left;
+            color: #3C0753;  /* Darker script color */
+        }
+        h2::before {
+        content: "\2022"; /* Unicode character for a bullet, you can replace it with another character */
+        font-size: 36px; /* Adjust the size of the bullet */
+        margin-right: 10px; /* Adjust the space between the bullet and the text */
+        vertical-align: middle; /* Center the bullet vertically with the text */
+        line-height: 1; /* Ensure proper alignment by setting line-height to 1 */
+        }
+
+
+
+        hr {
+            border: 0;
+            height: 2px;
+            background: #5e4c3c;  /* Separator color */
+            margin: 20px 0;
+        }
+
+        .footer {
+            text-align: left;
+            font-size: 12px;
+            color: #000000;  /* Black color */
+            line-height: 1.6;
+        }
+
+        .footer a {
+            color: #000000;  /* Black color */
+            text-decoration: underline;
+            cursor: pointer;
+            margin-right: 20px; /* Add some margin between elements */
+        }
+        p {
+            text-align: center;
+            line-height: 1.6;
+            color: #030637;
+        }
+
+        .quotes {
+            font-family: "Quote";
+            color: #910A67; /* Set color for the quotes class */
+            font-style: italic; /* Optionally, set font style to italic */
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h1 style="font-family:'HEAD1' 70px;display: inline;">DAILY FEED </h1>
+        <h6 class="daily-date" style="font-family: 'Datefont'; font-size: 30px;display: inline; color: #102C57;">{{current_date}} {{current_day}}</h6>
+        <br>
+        <br>
+    </div>
+
+    <h7 style="font-size: 50px ;color: #3C0753;font-family: 'Greetfont';">Good Morning Shubham...</h7>
+    <p class="quotes" style="text-align: center;font-family: 'Affont';">{{pick_random_affirmation}}</p>
+    <hr>
+    <h2 style="display: inline; margin-bottom: 0px;">Weather in {{city_}}: </h2>
+    <img src="{{ url_for('static', filename=condition_image_) }}" alt={{condition_}} style="max-width: 40px; max-height: 40px;display: inline;margin-top: 5px;" class="weather-image">
+    <div style="margin-left: 70px; margin-top: 0%;">
+    <p style=" color: #030637;text-align: left; margin-bottom: 0%;margin-top: 5px;">Today it will feel like {{condition_}} and {{temp_}} in {{city_}}.</p>
+    <p style=" color: #030637; text-align: left;margin-top: 0%;">{{rain_}}</p>
+    </div>
+    <hr>
+    <h2 style="margin-bottom: 0px;">NASA Picture of the day</h2>
+    <div style="margin-left: 70px; ">
+      <img style= "max-width:700px; max-height: 700px;" src="{{nasa_data['url']}}" alt="NASA Image">
+      <h3 style="margin-bottom: 5px; margin-top: 5px;color: #030637;">Description:</h3>
+      <p style="display: inline; font-size: 20px;color: #030637;">{{nasa_data['explanation']}}</p>
+      <a href="{{nasa_data['hdurl']}}" style="color: blue; text-decoration: underline; font-size: 15px;">HD image</a>   
+    </div>
+    <hr>
+    <h2 style="margin-bottom: 1px;" >Wikipedia Quote of the Day</h2>
+    <div style="margin-left: 70px; margin-top: 2px;color: #030637;">
+        <p style="margin-top: 0%; margin-bottom: 0%;">{{wikiquote_}}</p>
+        <footer>{{wikiauthor_}}</footer>
+    </div>
+    <hr>
+    <h2 style="margin-bottom: 1px;">Marathi Quote of the day</h2>
+    <div style="margin-left: 70px;">
+    <p class="quotes" style="margin-top: 0%;">{{get_random_marathi_quote}}</p></div>
+    <hr>
+    <h2 style="margin-bottom: 5px;">Verses from Holy Bible</h2>
+    <p class="quotes" style="margin-left: 70px; margin-top: 5px;">{{get_random_bible_verse}}</p></div>
+    <hr>
+    <h2 style="margin-bottom: 5px;">Quran Verse of the day</h2>
+    <p class="quotes" style="margin-left: 70px; margin-top: 5px;">{{get_random_quran_verse}}</p>
+    <hr>
+    <h2 style="margin-bottom: 5px;">Art of the day</h2>
+    <div style="margin-left: 70px; margin-bottom: 0%;color: #030637; ">
+        <img style= "margin-bottom: 5px; max-width:700px; max-height: 700px;" src={{artlink_show}} alt="Art image"/>
+        <p style="margin-bottom: 5px;text-align: left;margin-top: 0%;"><strong>Title:</strong>{{arttitle_}}</p>
+        <p style="margin-bottom: 5px; margin-top: 0% ; display: inline;"><strong>Artist:</strong> {{artist_}}</p>
+        <a style="margin-bottom: 5px; display: inline;" href={{artlink_}} target="_blank" style="font-size: 12px; color: #007BFF;">View High Res Art</a>     
+    </div>
+    <hr>
+    <h2>Events on This Day:</h2>
+    {{html_events | safe }}
+    <hr>
+    <div class="footer" style="color: #000000;">
+        <p style="display: inline;font-size: 20px;">Information generated at {{time_string}} |</p>
+        <p style="display: inline;font-size: 20px;">© Shubham Atkal | <a href="mailto:shubhamatkal@gmail.com">Contact</a></p>
+    </div>
+
+</body>
+</html>
