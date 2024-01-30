@@ -1,1 +1,9 @@
-https://www.topverses.com/Bible
+APScheduler (python lib)
+wikipedia for quote of the day , on this day 
+harvard meusem api : for art of the day
+nasa api for astronomy image of the day
+kaggle for data
+https://happymarathi.com/ : for marathi quotes
+https://www.topverses.com/Bible : for bible verses
+
+
