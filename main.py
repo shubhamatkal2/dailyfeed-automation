@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 import requests
 import random
 import time
@@ -14,13 +15,13 @@ app = Flask(__name__)
 
 #VALUES
 #api key for nasa
-nasa_apod_api_key = ""#api key
+nasa_apod_api_key = os.environ.get('NASAAPI')
 # Wikipedia API endpoint for events on this day
 wiki_api_url = "https://en.wikipedia.org/api/rest_v1/feed/onthisday/selected/"
-api_key_weather = ""#api key  # Replace with your actual API key
+api_key_weather =os.environ.get('WEATHERAPI')
 latitude = '19.83392508672324'  # Replace with the desired latitude
 longitude = '75.88525328466898'  # Replace with the desired longitude
-harvard_art_api = ""#api key
+harvard_art_api = os.environ.get('HARVARDAPI')
 
 
 def get_weather(api_key, lat, lon):
